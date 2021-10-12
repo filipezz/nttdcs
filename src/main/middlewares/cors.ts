@@ -4,8 +4,8 @@ export const cors = (
   response: Response,
   next: NextFunction
 ): void => {
-  response.header("access-control-allow-origin", "*");
-  response.header("access-control-allow-headers", "*");
-  response.header("access-control-allow-methods", "*");
+  response.set("access-control-allow-origin", "*");
+  response.set("access-control-allow-headers", "*");
+  response.set("access-control-allow-methods", "*");
   next();
 };
