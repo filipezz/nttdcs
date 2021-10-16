@@ -69,10 +69,10 @@ describe('LoginController', () => {
   })
   test('Should call EmailValidator with correct email', async() => {
     const { sut, emailValidatorStub } = makeSut()
-    const jestSpy = jest.spyOn(emailValidatorStub, 'isValid')
+    const emailValidatorSpy = jest.spyOn(emailValidatorStub, 'isValid')
 
     await sut.handle(makeFakeRequest())
-    expect(jestSpy).toHaveBeenCalledWith('any_mail@mail.com')
+    expect(emailValidatorSpy).toHaveBeenCalledWith('any_mail@mail.com')
   })
   test('Should return 500 if EmailValidator throws', async() => {
     const { sut, emailValidatorStub } = makeSut()
