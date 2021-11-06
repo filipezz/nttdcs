@@ -17,7 +17,7 @@ services:
       - "3333:3333"
       - "9222:9222"
     volumes:
-      - ./dist:/usr/src/app/dist
+      - ./dist/:/usr/src/app/dist
       - ./package.json:/usr/src/app/package.json
     restart: always
     command: bash -c "npm install --only=prod && npm run debug"
