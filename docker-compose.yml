@@ -11,8 +11,8 @@ services:
     restart: always
   api:
     container_name: api-container
-    build: .
-    image: clean-node-api
+    image: node:12
+    working_dir: /usr/src/app
     ports:
       - "3333:3333"
       - "9222:9222"
@@ -20,6 +20,6 @@ services:
       - ./dist:/usr/src/app/dist
       - ./package.json:/usr/src/app/package.json
     restart: always
-    command: npm run debug
+    command: bash -c "npm install --only=prod && npm run debug"
     links:
       - mongo
