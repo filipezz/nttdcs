@@ -2,7 +2,6 @@ import { badRequest, serverError, unauthorized, ok } from '../../helpers/http/ht
 import { Controller, HttpRequest, HttpResponse, Authentication, Validation } from './login-controller-protocols'
 
 export class LoginController implements Controller {
-
   constructor(private readonly authentication: Authentication, private readonly validation: Validation) {
 
   }
@@ -15,10 +14,8 @@ export class LoginController implements Controller {
       }
       const { email, password } = httpRequest.body
 
-
       const accessToken = await this.authentication.auth({ email, password })
       if (!accessToken) {
-
         return unauthorized()
       }
       return ok({ accessToken })

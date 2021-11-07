@@ -16,9 +16,8 @@ describe('CompareFieldsValidation', () => {
       any_field_to_compare: 'wrong_value'
     })
 
-
-    expect(error).toEqual(new InvalidParamError('any_field_to_compare'));
-  });
+    expect(error).toEqual(new InvalidParamError('any_field_to_compare'))
+  })
   it('should not return if validation succeds', () => {
     const { sut } = makeSut()
     const error = sut.validate({
@@ -26,8 +25,6 @@ describe('CompareFieldsValidation', () => {
       any_field_to_compare: 'any_value'
     })
 
-
-    expect(error).toBeFalsy();
-  });
-
+    expect(error).toBeFalsy()
+  })
 })

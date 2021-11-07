@@ -17,14 +17,13 @@ const makeEmailValidator = (): EmailValidator => {
   return new EmailValidatorStub()
 }
 
-
 const makeSut = (): SutTypes => {
   const emailValidatorStub = makeEmailValidator()
 
   const sut = new EmailValidation('email', emailValidatorStub)
   return {
     emailValidatorStub,
-    sut,
+    sut
 
   }
 }
@@ -56,5 +55,4 @@ describe('Email Validation', () => {
 
     expect(sut.validate).toThrow()
   })
-
 })

@@ -44,14 +44,14 @@ const makeFakeAccountData = (): AddAccountModel => ({
   password: 'valid_password'
 })
 describe('DbAddAccount Usecase', () => {
-  test('Should call Hasher with correct password', async () => {
+  test('Should call Hasher with correct password', async() => {
     const { hasherStub, sut } = makeSut()
     const hasherSpy = jest.spyOn(hasherStub, 'hash')
     const accountData = makeFakeAccountData()
     await sut.add(accountData)
     expect(hasherSpy).toHaveBeenCalledWith('valid_password')
   })
-  test('Should throw if Hasher throws', async () => {
+  test('Should throw if Hasher throws', async() => {
     const { hasherStub, sut } = makeSut()
     jest
       .spyOn(hasherStub, 'hash')
@@ -63,7 +63,7 @@ describe('DbAddAccount Usecase', () => {
 
     await expect(promise).rejects.toThrow()
   })
-  test('Should call AddAccountRepository with correct values', async () => {
+  test('Should call AddAccountRepository with correct values', async() => {
     const { addAccountRepositoryStub, sut } = makeSut()
     const addAccountSpy = jest.spyOn(addAccountRepositoryStub, 'add')
     const accountData = makeFakeAccountData()
@@ -74,7 +74,7 @@ describe('DbAddAccount Usecase', () => {
       password: 'hashed_password'
     })
   })
-  test('Should throw if AddAccountRepository throws', async () => {
+  test('Should throw if AddAccountRepository throws', async() => {
     const { addAccountRepositoryStub, sut } = makeSut()
     jest
       .spyOn(addAccountRepositoryStub, 'add')
@@ -86,7 +86,7 @@ describe('DbAddAccount Usecase', () => {
 
     await expect(promise).rejects.toThrow()
   })
-  test('Should return an account on success', async () => {
+  test('Should return an account on success', async() => {
     const { sut } = makeSut()
     const accountData = makeFakeAccountData()
     const account = await sut.add(accountData)

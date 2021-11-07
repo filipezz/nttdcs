@@ -4,20 +4,20 @@ import { AccountMongoRepository } from './account-mongo-repository'
 
 let accountCollection: Collection
 describe('Account Mongo Repository', () => {
-  beforeAll(async () => {
+  beforeAll(async() => {
     await MongoHelper.connect(process.env.MONGO_URL)
   })
-  afterAll(async () => {
+  afterAll(async() => {
     await MongoHelper.disconnect()
   })
-  beforeEach(async () => {
+  beforeEach(async() => {
     accountCollection = MongoHelper.getCollection('accounts')
     await accountCollection.deleteMany({})
   })
   const makeSut = (): any => {
     return new AccountMongoRepository()
   }
-  test('Should return an account on add success', async () => {
+  test('Should return an account on add success', async() => {
     const sut = makeSut()
     const account = await sut.add({
       name: 'any_name',
@@ -31,7 +31,7 @@ describe('Account Mongo Repository', () => {
     expect(account.email).toBe('any_email@email.com')
     expect(account.password).toBe('any_password')
   })
-  test('Should return an account on loadByEmail success', async () => {
+  test('Should return an account on loadByEmail success', async() => {
     const sut = makeSut()
     await accountCollection.insertOne({
       name: 'any_name',
@@ -46,13 +46,13 @@ describe('Account Mongo Repository', () => {
     expect(account.email).toBe('any_email@email.com')
     expect(account.password).toBe('any_password')
   })
-  test('Should return an null if loadByEmail fails', async () => {
+  test('Should return an null if loadByEmail fails', async() => {
     const sut = makeSut()
 
     const account = await sut.loadByEmail('any_email@email.com')
     expect(account).toBeFalsy()
   })
-  test('Should uptade the account accessToken on updateAccessToken success', async () => {
+  test('Should uptade the account accessToken on updateAccessToken success', async() => {
     const sut = makeSut()
     const res = await accountCollection.insertOne({
       name: 'any_name',

@@ -4,14 +4,13 @@
     "project": "./tsconfig.eslint.json"
   },
   "rules": {
-    "@typescript-eslint/space-before-function-paren": [
-      "error",
-      "never"
-    ],
     "@typescript-eslint/strict-boolean-expressions": "off",
     "@typescript-eslint/prefer-nullish-coalescing": "off",
     "@typescript-eslint/no-misused-promises": "off",
     "@typescript-eslint/return-await": "off",
-    "no-redeclare": "off"
+    "no-redeclare": "off",
+    "@typescript-eslint/no-floating-promises": "off",
+    "node/no-path-concat": "off",
+    "@typescript-eslint/space-before-function-paren": "off"
   }
 }

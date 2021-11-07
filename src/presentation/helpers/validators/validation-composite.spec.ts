@@ -12,7 +12,7 @@ const makeValidation = (): Validation => {
       return null
     }
   }
-  return new ValidationStub
+  return new ValidationStub()
 }
 const makeSut = (): SutTypes => {
   const validationStubs = [makeValidation(), makeValidation()]
@@ -28,9 +28,8 @@ describe('ValidationComposite', () => {
       any_field: 'any_value'
     })
 
-
-    expect(error).toEqual(new MissingParamError('field'));
-  });
+    expect(error).toEqual(new MissingParamError('field'))
+  })
   it('should return the first error if more than one validation fails', () => {
     const { sut, validationStubs } = makeSut()
     jest.spyOn(validationStubs[0], 'validate').mockReturnValueOnce(new Error())
@@ -40,19 +39,15 @@ describe('ValidationComposite', () => {
       any_field: 'any_value'
     })
 
-
-    expect(error).toEqual(new Error());
-  });
+    expect(error).toEqual(new Error())
+  })
   it('should not return if validation succeeds', () => {
     const { sut } = makeSut()
-
 
     const error = sut.validate({
       any_field: 'any_value'
     })
 
-
-    expect(error).toBeFalsy();
-  });
-
+    expect(error).toBeFalsy()
+  })
 })
